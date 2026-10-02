@@ -28,8 +28,7 @@
         
         <div class="mb-3">
             <label for="image" class="form-label">Upload Lisitng Image</label>
-            <input name="listing[image]" type="file" class="form-control">
-            required
+            <input name="listing[image]" type="file" class="form-control" required>
         </div>
 
         <div class="row">
@@ -65,6 +64,25 @@
             class="form-control"
             required>
             <div class="invalid-feedback">Location should be valid</div>
+        </div>
+
+        <div class="mb-3">
+            <label for="category" class="form-label">Category</label>
+            
+            <select name="listing[category]" id="category" class="form-select" required>
+                <option value="" selected disabled>Select the Category</option>
+                <option value="trending">Trending</option>
+                <option value="rooms">Rooms</option>
+                <option value="iconic cities">Iconic Cities</option>
+                <option value="mountains">Mountains</option>
+                <option value="castles">Castles</option>
+                <option value="amazing pools">Amazing Pools</option>
+                <option value="camping">Camping</option>
+                <option value="farms">Farms</option>
+                <option value="arctic">Arctic</option>
+                <option value="domes">Domes</option>
+                <option value="boats">Boats</option>
+            </select>
         </div>
 
         <button class="btn btn-dark add-btn mt-3">Add</button>

@@ -4,6 +4,10 @@
     color: #fff;
     border-radius: 25px;
     padding: 0 1rem 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
   }
 
   .search-btn:hover {
@@ -22,7 +26,7 @@
     font-size: 1rem;
   }
 </style>
-<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+<nav class="navbar navbar-expand-md bg-white border-bottom sticky-top">
   <div class="container-fluid">
     <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
@@ -40,7 +44,9 @@
           type="search" 
           placeholder="Search destinations" 
           />
-          <button class="btn search-btn" type="submit"></button> <i class="fa-solid fa-magnifying-glass"></i>Search</button>
+          <button class="btn search-btn" type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i> Search
+          </button>
         </form>
       </div>
       <div class="navbar-nav ms-auto">
@@ -48,9 +54,9 @@
         <% if(!currUser) { %>
         <a class="nav-link" href="/signup"><b>Sign up</b></a>
         <a class="nav-link" href="/login"><b>Log in</b></a>
-        <% } %> <%  if(currUser) { %>
+        <% } %> 
+        <%  if(currUser) { %>
         <a class="nav-link" href="/logout"><b>Log out</b></a>
-
         <% } %>
       </div>
     </div>
