@@ -1,10 +1,78 @@
 <% layout("layouts/boilerplate") %>
 
+<style>
+    .review-avatar {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: #fe424d;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    flex-shrink: 0;
+}
+
+.review-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.review-card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.12);
+    padding: 1rem 1rem;
+    width: 100%;
+}
+
+.card-body {
+    padding: 2rem;
+}
+
+.review-card .starability-result {
+    zoom: 0.50;
+    margin-bottom: 0.5rem;
+}
+
+.review-card .card-text {
+    margin-bottom: 1rem;
+}
+
+.card-title {
+    font-size: 1rem;
+}
+
+.review-header {
+    margin-bottom: 0.75rem;
+}
+
+.del-btn {
+    background-color: #fe424d;
+    color: white;
+    border-radius: 10px;
+}
+
+@media (max-width: 576px) {
+    .review-card {
+        padding: 0.5rem;
+        width: 100%;
+    }
+
+    #map {
+        width: 100%;
+    }
+}
+</style>
+
 <div class="row mt-3">
-    <div class="col-8 offset-3">
+    <div class="col-12 col-md-8 offset-md-3">
     <h3><%= listing.title %></h3>
 </div>
-    <div class="card col-6  offset-3 show-card listing-card">
+    <div class="card col-12 col-md-6 offset-md-3 show-card listing-card">
         <img src="<%= listing.image.url %>" class="card-img-top show-img" alt="listing_image">
         <div class="card-body">
           <p class="card-text">Owned by <i><%= listing.owner.username %></i></p>
@@ -31,7 +99,7 @@
     </form>
     </div>
     <% } %>
-    <div class="col-8 offset-3 mb-3">
+    <div class="col-12 col-md-8 offset-md-3 mb-3">
         <% if(currUser) { %>
              <hr />
         <h4>Leave a Review</h4>
@@ -68,21 +136,26 @@
         <% } %>
 
         <% if(listing.reviews.length > 0) { %> 
-        <div class="row">
+        <div class="row g-3">
         <p><b>All Reviews</b></p>
         <% for(review of listing.reviews) { %>
-            <div class="card col-5 ms-3 mb-3">
-                <div class="card-body">
-                    <h5 class="card-title">@<%= review.author.username %></h5>
-                    <p class="starability-result card-text" data-rating="<%= review.rating %>">
-                    </p>
-                    <p class="card-text"><%= review.comment %></p>
-                     
+           <div class="col-12 col-md-6 mb-3">
+    <div class="card review-card h-100">
+        <div class="card-body">
+            <div class="review-header">
+                <div class="review-avatar">
+                    <i class="fa-solid fa-user"></i>
                 </div>
-                <form class="mb-3" method="POST" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
-                    <button class="btn btn-sm btn-dark">Delete</button>
-                </form>
+                <h5 class="card-title mb-0">@<%= review.author.username %></h5>
             </div>
+            <p class="starability-result" data-rating="<%= review.rating %>"></p>
+            <p class="card-text"><%= review.comment %></p>
+            <form method="POST" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
+                <button class="btn btn-sm del-btn">Delete</button>
+            </form>
+        </div>
+    </div>
+</div>
         <% } %>
         </div>
         <% } %>
@@ -95,7 +168,7 @@
         const listing = <%- JSON.stringify(listing) %>;
     </script>
 
-    <div class="col-8 offset-3 mb-3">
+    <div class="col-12  col-md-8 offset-md-3 mb-3">
             <h3>Where you'll be</h3>
             <div id="map"></div>
     </div>
